@@ -82,7 +82,7 @@
     <!--<Grid x:Name="LayoutRoot"  Background="Transparent" Margin="0 0 0 0" Height="26"   >-->
         <Border x:Name="border" Margin="0 1 0 0"   BorderThickness="0" Height="26"   CornerRadius="4 4 0 0" Padding="4">
             <StackPanel Orientation="Horizontal" Background="Transparent">
-            <Button x:Name="handle" Style="{StaticResource EmptyButtonStyle}">
+            <Button x:Name="handle" Style="{StaticResource EmptyButtonStyle}" MinWidth="30">
                 <!--<TextBlock x:Name="btn" Text="test"  FontSize="14"  Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" TextOptions.TextFormattingMode="Display"/>-->
             </Button>
                 <Button x:Name="closeButton"  ToolTip="Close" Style="{StaticResource CloseButtonStyle}"/>
