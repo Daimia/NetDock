@@ -75,6 +75,20 @@ namespace NetDock.Helpers
             return dpi * 100 / 96.0;
         }
 
+
+        /// <summary>
+        /// Get scale factor for an each monitor
+        /// </summary>
+        /// <param name="control"> Any control for OS who doesn't support DPI per monitor </param>
+        /// <param name="monitorPoint"> Monitor point (Screen.Bounds) </param>
+        /// <returns> Scale factor </returns>
+        public static double ScaleFactor( Point monitorPoint)
+        {
+            var dpi = GetDpi(monitorPoint);
+
+            return dpi * 100 / 96.0;
+        }
+
         /// <summary>
         /// Get DPI for a monitor
         /// </summary>
@@ -99,6 +113,28 @@ namespace NetDock.Helpers
 
             return dpiX;
         }
+
+
+        public static uint GetDpi(Point monitorPoint)
+        {
+            uint dpiX;
+
+            if (IsSupportingDpiPerMonitor)
+            {
+                var monitorFromPoint = MonitorFromPoint(monitorPoint, 2);
+
+                GetDpiForMonitor(monitorFromPoint, DpiType.Effective, out dpiX, out _);
+            }
+            else
+            {
+                var control = new Control();
+                // If using with System.Windows.Forms - can be used Control.DeviceDpi
+                dpiX = control == null ? 96 : (uint)control.DeviceDpi;
+            }
+
+            return dpiX;
+        }
+
 
         /// <summary>
         /// Retrieves a handle to the display monitor that contains a specified point.
