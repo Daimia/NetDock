@@ -310,7 +310,6 @@ public class DockSurface : Grid
 
 
             Context.OnDockStateChanged(this.Item, DockState.Docked);
-
         }
         else
         {

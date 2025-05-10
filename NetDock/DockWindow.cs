@@ -119,6 +119,7 @@ public class DockWindow : Window
                     {
                         this.RemoveChild(this.DockItem.Content);
                         DockedParent.Add(this.DockItem, DockedDirection, DockedPercentage);
+                        DockItem.Window = null;
                         DockItem = null;
                         this.Close();
                     });
@@ -225,19 +226,19 @@ public class DockWindow : Window
             //Transition(x, y, w, h).ContinueWith(_ =>
             //{
                Dispatcher.Invoke(() =>
-                {
-                    //this.Width = w; this.Height = h;
-                    //Left = x;
-                    //Top = y;    
+               {
+                   //this.Width = w; this.Height = h;
+                   //Left = x;
+                   //Top = y;    
 
 
-
-                    item.Content.Detach();
-                    hovered.Add(item, dir);
-                    Close();
-                    HandlePreviewLost();
-                    InTransition = false;
-                });
+                   item.Window = null;
+                   item.Content.Detach();
+                   hovered.Add(item, dir);
+                   Close();
+                   HandlePreviewLost();
+                   InTransition = false;
+               });
            //});
 
             //this.ResizeSmoothAsync(x, y, w, h).ContinueWith(_ =>
